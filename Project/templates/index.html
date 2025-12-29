@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Game Coding</title>
+<style>
+body {
+margin:0;
+overflow:hidden;
+background: linear-gradient(120deg,#1a2a6c,#b21f1f,#fdbb2d);
+font-family: 'Comic Sans MS', cursive;
+color:white;
+font-family:"Comic Sans MS";
+text-align:center;
+overflow:hidden;
+}
+h1{margin-top:50px;font-size:42px;}
+#hero{
+width:180px;
+position:absolute;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+animation:lompat 1.8s infinite;
+}
+@keyframes lompat{
+0%,100%{bottom:20px;}
+50%{bottom:70px;}
+}
+button{
+width:170px;
+height:60px;
+font-size:24px;
+border-radius:20px;
+border:none;
+cursor:pointer;
+position:absolute;
+}
+#ya{background:#00ff99;left:38%;top:300px;}
+#tidak{background:#ff5555;left:55%;top:300px;}
+</style>
+</head>
+<body>
+
+<h1>KAMU JANJI GK MAIN GAME LAGI!?</h1>
+<img src="/static/hero.gif" id="hero">
+
+<button id="ya" onclick="jawabYa()">YA</button>
+<button id="tidak" onmouseover="kabur()">TIDAK</button>
+
+<audio id="bgm" src="/static/bgm.mp3" loop></audio>
+
+<script>
+const yesSound = new Audio("/static/yes.mp3");
+const noSound  = new Audio("/static/no.mp3");
+const bgm = document.getElementById("bgm");
+
+function kabur(){
+noSound.currentTime=0;
+noSound.play();
+let x=Math.random()*(window.innerWidth-200);
+let y=Math.random()*(window.innerHeight-200);
+let t=document.getElementById("tidak");
+t.style.left=x+"px";
+t.style.top=y+"px";
+}
+
+function jawabYa(){
+yesSound.currentTime=0;
+yesSound.play();
+setTimeout(()=>{ window.location="/yes"; },300);
+}
+</script>
+
+</body>
+</html>
